@@ -2,7 +2,38 @@ ja:
   activerecord:
     models:
       task: タスク
-    attributes:  
+    tasks:
+      index:
+        Tasks Index: タスク一覧ページ
+        Title: タイトル
+        Content: 内容
+        Created_at: 作成日時
+        Show: 詳細
+        Edit: 編集
+        Destroy: 削除
+        Are you sure?: 本当に削除してもよろしいですか？
+      new:
+        New Task: タスク登録ページ
+        Title: タイトル
+        Content: 内容
+        Create Task: 登録する
+        Back: 戻る
+      show:
+        Show Task: タスク詳細ページ
+        Title: タイトル
+        Content: 内容
+        Created_at: 作成日時
+        Edit: 編集
+        Back: 戻る
+      edit:
+        Edit Task: タスク編集ページ
+        Title: タイトル
+        Content: 内容
+        Update Task: 更新する
+        Back: 戻る
+    attributes:
+      Tasks Index: タスク一覧
+      New Task: タスクを登録する
       task:
         title: タイトル
         content: 内容
@@ -14,6 +45,8 @@ ja:
       too_short: は6文字以上で入力してください
       taken: はすでに使用されています
       confirmation: とパスワードの入力が一致しません
+      Title can’t be blank: タイトルを入力してください
+      Content can’t be blank: 内容を入力してください
   common:
     new: 新規作成
     show: 詳細
@@ -22,18 +55,8 @@ ja:
     back: 戻る
     confirm_destroy: 本当に削除してもよろしいですか？
     message: ログインしてください
-  tasks:
-    index:
-      title: タスク一覧ページ
-    new:
-      title: タスク登録ページ
-    edit:
-      title: タスク編集ページ
-    show:
-      title: タスク詳細ページ
-    create:
-      created: タスクを登録しました
-    update:
-      updated: タスクを更新しました
-    destroy:
-      destroyed: タスクを削除しました  
+  flash:
+    created : を登録しました
+    updated : を更新しました
+    destroyed : を削除しました
+    

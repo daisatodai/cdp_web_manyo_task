@@ -1,4 +1,4 @@
-<h1>Tasks Index Page</h1>
+<h1><%= t('.Tasks Index') %></h1>
 
 <table>
   <thead>
@@ -10,7 +10,7 @@
   </thead>
 
   <tbody>
-    <% @tasks.each do |task| %>
+    <% @tasks.order('id desc').each do |task| %>
       <tr>
         <td><%= task.title %></td>
         <td><%= task.content %></td>
