@@ -1,62 +1,44 @@
 ja:
   activerecord:
     models:
-      task: タスク
-    tasks:
-      index:
-        Tasks Index: タスク一覧ページ
-        Title: タイトル
-        Content: 内容
-        Created_at: 作成日時
-        Show: 詳細
-        Edit: 編集
-        Destroy: 削除
-        Are you sure?: 本当に削除してもよろしいですか？
-      new:
-        New Task: タスク登録ページ
-        Title: タイトル
-        Content: 内容
-        Create Task: 登録する
-        Back: 戻る
-      show:
-        Show Task: タスク詳細ページ
-        Title: タイトル
-        Content: 内容
-        Created_at: 作成日時
-        Edit: 編集
-        Back: 戻る
-      edit:
-        Edit Task: タスク編集ページ
-        Title: タイトル
-        Content: 内容
-        Update Task: 更新する
-        Back: 戻る
-    attributes:
-      Tasks Index: タスク一覧
-      New Task: タスクを登録する
-      task:
-        title: タイトル
-        content: 内容
+      tasks: タスク
+  views:
+    index_title: タスク一覧ページ
+    new_title: タスク登録ページ
+    show_title: タスク詳細ページ
+    edit_title: タスク編集ページ
+    title: タイトル
+    tasks: タスク
+    content: 内容
+    created_at: 作成日時
+    New Task: タスクを登録する
   errors:
     format: "%{attribute}%{message}"
     messages:
+      title: タイトル
+      content: 内容
       blank: を入力してください
       invalid: が無効です
       too_short: は6文字以上で入力してください
       taken: はすでに使用されています
       confirmation: とパスワードの入力が一致しません
-      Title can’t be blank: タイトルを入力してください
-      Content can’t be blank: 内容を入力してください
+      blank: を入力してください
   common:
+    index: タスク一覧
+    task: タスクを登録する
     new: 新規作成
     show: 詳細
     edit: 編集
     destroy: 削除
     back: 戻る
-    confirm_destroy: 本当に削除してもよろしいですか？
+    update: 更新する
+    create: 登録する
+    title: タイトル：
+    content: 内容：
+    created_at: 作成日時：
+    delete_confirm: 本当に削除してもよろしいですか？
     message: ログインしてください
   flash:
-    created : を登録しました
-    updated : を更新しました
-    destroyed : を削除しました
-    
+    created : タスクを登録しました
+    updated : タスクを更新しました
+    destroyed : タスクを削除しました

@@ -1,5 +1,7 @@
-<h1>New Task Page</h1>
+<h1><%= t('views.new_title') %></h1>
 
 <%= render 'form', task: @task, button_id: "create-task" %>
-
-<%= link_to 'Back', tasks_path, id: "back" %>
+<div class="actions">
+    <%= form.submit t('common.create'), id: button_id %>
+  </div>
+<%= link_to t('common.back') , tasks_path, id: "back" %>

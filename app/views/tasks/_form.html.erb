@@ -1,7 +1,7 @@
 <%= form_with(model: task, local:true) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= pluralize(task.errors.count, "error") %></h2>
 
       <ul>
         <% task.errors.each do |error| %>
@@ -12,16 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %><br>
+    <%= form.label t('views.title') %><br>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :content %><br>
+    <%= form.label t('views.content') %><br>
     <%= form.text_area :content %>
   </div>
   <br>
-  <div class="actions">
-    <%= form.submit id: button_id %>
-  </div>
+  # <div class="actions">
+  #   <%= form.submit t('common.create'), id: button_id %>
+  # </div>
 <% end %>
