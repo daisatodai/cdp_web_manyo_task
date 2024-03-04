@@ -2,6 +2,9 @@ ja:
   activerecord:
     models:
       tasks: タスク
+    attributes:
+      title: タイトル
+      content: 内容
   views:
     index_title: タスク一覧ページ
     new_title: タスク登録ページ
@@ -14,15 +17,15 @@ ja:
     New Task: タスクを登録する
   errors:
     format: "%{attribute}%{message}"
+    attributes:
+      title: タイトル
+      content: 内容
     messages:
       title: タイトル
       content: 内容
       blank: を入力してください
       invalid: が無効です
-      too_short: は6文字以上で入力してください
-      taken: はすでに使用されています
       confirmation: とパスワードの入力が一致しません
-      blank: を入力してください
   common:
     index: タスク一覧
     task: タスクを登録する
