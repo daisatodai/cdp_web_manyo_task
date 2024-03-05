@@ -3,8 +3,9 @@ ja:
     models:
       tasks: タスク
     attributes:
-      title: タイトル
-      content: 内容
+      task:
+        title: タイトル
+        content: 内容
   views:
     index_title: タスク一覧ページ
     new_title: タスク登録ページ
@@ -21,8 +22,6 @@ ja:
       title: タイトル
       content: 内容
     messages:
-      title: タイトル
-      content: 内容
       blank: を入力してください
       invalid: が無効です
       confirmation: とパスワードの入力が一致しません
@@ -41,6 +40,10 @@ ja:
     created_at: 作成日時：
     delete_confirm: 本当に削除してもよろしいですか？
     message: ログインしてください
+  helpers:
+    submit:
+      create: 登録する
+      update: 更新する
   flash:
     created : タスクを登録しました
     updated : タスクを更新しました
