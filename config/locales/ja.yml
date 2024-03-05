@@ -6,6 +6,11 @@ ja:
       task:
         title: タイトル
         content: 内容
+  tasks:
+    index:
+      title: タスク一覧ページ
+    new:
+      title: タスク登録ページ
   views:
     index_title: タスク一覧ページ
     new_title: タスク登録ページ
