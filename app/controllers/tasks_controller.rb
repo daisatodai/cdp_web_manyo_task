@@ -12,7 +12,7 @@ class TasksController < ApplicationController
     elsif params[:sort_priority]
       @tasks = @tasks.sort_priority
     end
-    @tasks = @tasks.page(params[:page]).per(10)
+    @tasks = @tasks.sort_by_created_at.page(params[:page]).per(10)
   end
 
   # GET /tasks/1 or /tasks/1.json

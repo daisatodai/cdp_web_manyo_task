@@ -18,11 +18,11 @@
 </p>
 <p>
   <strong><%= t('common.priority') %></strong>
-  <%= @task.priority %>
+  <%= @task.priority_i18n %>
 </p>
 <p>
   <strong><%= t('common.status') %></strong>
-  <%= @task.status %>
+  <%= @task.status_i18n %>
 </p>
 
 <%= link_to t('common.edit'), edit_task_path(@task), id: "edit-task" %> |
