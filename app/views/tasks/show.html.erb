@@ -1,4 +1,4 @@
-<h1><%= t('views.show_title') %></h1>
+<h1><%= t('.title') %></h1>
 
 <p>
   <strong><%= t('common.title') %></strong>
@@ -11,6 +11,18 @@
 <p>
   <strong><%= t('common.created_at') %></strong>
   <%= @task.created_at %>
+</p>
+<p>
+  <strong><%= t('common.deadline') %></strong>
+  <%= @task.deadline_on %>
+</p>
+<p>
+  <strong><%= t('common.priority') %></strong>
+  <%= @task.priority %>
+</p>
+<p>
+  <strong><%= t('common.status') %></strong>
+  <%= @task.status %>
 </p>
 
 <%= link_to t('common.edit'), edit_task_path(@task), id: "edit-task" %> |
