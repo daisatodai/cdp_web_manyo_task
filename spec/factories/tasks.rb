@@ -2,21 +2,28 @@
 FactoryBot.define do
   # 作成するテストデータの名前を「task」とします
   # 「task」のように存在するクラス名のスネークケースをテストデータ名とする場合、そのクラスのテストデータが作成されます
-  factory :task do
-    title { 'first_task' }
-    created_at { '2022-02-18' }
+  factory :task , class: Task do
+    title { 'first_task_title' }
+    content { 'slum dunk'}
+    deadline_on { '002022-2-18'}
+    priority { 'middle' }
+    status { 'waiting' }
   end
   # 作成するテストデータの名前を「second_task」とします
   # 「second_task」のように存在しないクラス名のスネークケースをテストデータ名とする場合、`class`オプションを使ってどのクラスのテストデータを作成するかを明示する必要があります
-  factory :second_task, class: Task do
-    title { 'second_task' }
-    content {'baseball' }
-    created_at { '2022-02-17' }
+  factory :second_task , class: Task do
+    title { 'second_task_title' }
+    content {'haikyuu' }
+    deadline_on {'002022-2-17'}
+    priority { 'high' }
+    status { 'working' }
   end
 
-  factory :third_task, class: Task do
-    title { 'third_task' }
-    content { 'soccer' }
-    created_at { '2022-02-16' }
+  factory :third_task , class: Task do
+    title { 'third_task_title' }
+    content { 'one piece' }
+    deadline_on {'002022-2-16'}
+    priority { 'low' }
+    status { 'completed' }
   end
 end

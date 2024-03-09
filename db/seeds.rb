@@ -5,6 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-50.times do |i|
-  Task.create!(title: "Task.title#{i+1}",content: "Task.content#{i+1}")
+
+10.times do |i|
+  n = i+1
+Task.create!(
+  title: "Task.title#{i+1}",
+  content: "任意",
+  deadline_on: Date.new(2022, 8, n),
+  priority: rand(0..2) ,
+  status: rand(0..2) )
 end

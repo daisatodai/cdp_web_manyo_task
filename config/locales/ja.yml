@@ -6,21 +6,38 @@ ja:
       task:
         title: タイトル
         content: 内容
+        deadline_on: 終了期限
+        priority: 優先度
+        status: ステータス
+  enums:
+    task:
+      priority:
+        low: 低
+        middle: 中
+        high: 高
+      status:
+        waiting: 未着手
+        working: 着手中
+        completed: 完了
   tasks:
     index:
       title: タスク一覧ページ
     new:
       title: タスク登録ページ
+    edit:
+      title: タスク編集ページ
+    show:
+      title: タスク詳細ページ
   views:
-    index_title: タスク一覧ページ
-    new_title: タスク登録ページ
-    show_title: タスク詳細ページ
-    edit_title: タスク編集ページ
     title: タイトル
     tasks: タスク
     content: 内容
     created_at: 作成日時
+    deadline: 終了期限
+    priority: 優先度
+    status: ステータス
     New Task: タスクを登録する
+    search: 検索
   errors:
     format: "%{attribute}%{message}"
     attributes:
@@ -43,6 +60,9 @@ ja:
     title: タイトル：
     content: 内容：
     created_at: 作成日時：
+    deadline: 終了期限：
+    priority: 優先度：
+    status: ステータス：
     delete_confirm: 本当に削除してもよろしいですか？
     message: ログインしてください
   helpers:
