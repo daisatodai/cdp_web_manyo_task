@@ -1,0 +1,13 @@
+<h1>アカウント詳細ページ</h1>
+
+<p>
+  <strong><%= t('common.name') %></strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong><%= t('common.mail') %></strong>
+  <%= @user.email %>
+</p>
+
+<%= link_to t('common.edit'), edit_user_path(@user), id: "edit-user" %>

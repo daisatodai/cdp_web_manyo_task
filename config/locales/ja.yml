@@ -38,6 +38,10 @@ ja:
     status: ステータス
     New Task: タスクを登録する
     search: 検索
+    name: 名前
+    email: メールアドレス
+    admin: 管理者権限
+    task_count: タスク数
   errors:
     format: "%{attribute}%{message}"
     attributes:
@@ -63,8 +67,11 @@ ja:
     deadline: 終了期限：
     priority: 優先度：
     status: ステータス：
+    name: 名前：
+    mail: メールアドレス：
     delete_confirm: 本当に削除してもよろしいですか？
     message: ログインしてください
+    admin: 管理者権限：
   helpers:
     submit:
       create: 登録する

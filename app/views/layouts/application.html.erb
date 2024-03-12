@@ -11,13 +11,24 @@
 
   <body>
   <nav>
-  <p id="notice"><%= notice %></p>
-  <li>
-    <%= link_to t('common.index'), tasks_path, id: "tasks-index" %>
-  </li>
-  <li>
-    <%= link_to t('common.task'), new_task_path, id: "new-task" %>
-  </li>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+
+    <% if logged_in? %>
+      <li><%= link_to t('common.index'), tasks_path, id: "tasks-index" %></li>
+      <li><%= link_to t('common.task'), new_task_path, id: "new-task" %></li>
+      <li><%= link_to "アカウント設定", user_path(current_user.id), id: "account-setting" %></li>
+      <li><%= link_to "ログアウト", new_session_path, method: :delete, id: "sign-out" %></li>
+      <% if admin? %>
+        <li><%= link_to "ユーザー一覧", admin_users_path, id: "users-index" %></li>
+        <li><%= link_to "ユーザーを登録する", new_admin_user_path, id: "add-user" %></li>
+      <% end %>
+    <% else %>
+      <li><%= link_to "アカウント登録", new_user_path, id: "sign-up" %></li>
+      <li><%= link_to "ログイン", new_session_path, id: "sign-in" %></li>
+    <% end %>
+
   <%= yield %>
   </nav>
   </body>
