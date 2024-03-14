@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
-
+  before_action :ensure_correct_user, only: %i[ show edit update destroy ]
   # GET /tasks or /tasks.json
   def index
     @tasks = current_user.tasks.order(created_at: :desc)
@@ -92,5 +92,12 @@ class TasksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def task_params
       params.require(:task).permit(:title, :content, :deadline_on, :priority, :status)
+    end
+
+    def ensure_correct_user
+      if @task.user.id != current_user.id
+        flash[:notice] = "アクセス権限がありません"
+        redirect_to tasks_path
+      end
     end
 end
