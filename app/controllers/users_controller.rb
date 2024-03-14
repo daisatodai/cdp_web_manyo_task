@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 before_action :ensure_correct_user, only: [:show]
 before_action :set_user, only: [:show, :edit, :update, :destroy]
+before_action :logout_required, only:[:new, :create]
 skip_before_action :login_required, only: [:new, :create]
 
 def new
@@ -69,17 +70,10 @@ private
 
   def ensure_correct_user
     @user = User.find_by(id: params[:id])
-  
     if @user.id != current_user.id
       flash[:notice] = "アクセス権限がありません"
       redirect_to tasks_path
     end
   end
 
-  def login_required
-    redirect_to new_session_path unless current_user
-    flash[:notice] = 'ログインしてください'
-  end
 end
-
-

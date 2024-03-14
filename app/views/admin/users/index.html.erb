@@ -15,7 +15,7 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= user.admin %></td>
+        <td><%= user.admin ? "あり" : "なし" %></td>
         <td><%= user.tasks.count %></td>
         <td><%= link_to t('common.show'), admin_user_path(user.id), class: "show-user" %></td>
         <td><%= link_to t('common.edit'), edit_admin_user_path(user.id), class: "edit-user" %></td>

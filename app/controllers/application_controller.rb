@@ -9,6 +9,13 @@ class ApplicationController < ActionController::Base
   end
 
   def login_required
-    redirect_to new_session_path unless current_user
+    redirect_to new_session_path, notice: 'ログインしてください' unless current_user
+  end
+
+  def logout_required
+    if logged_in?
+      redirect_to tasks_path,
+      notice: 'ログアウトしてください'
+    end
   end
 end
