@@ -6,12 +6,46 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(
-  name: "管理者２", 
-  email: "sample@g.com",
+# if User.find_by(email: "sample10@g.com")
+#   admin_user = User.find_by(email: "sample10@g.com")
+# else
+#   admin_user = User.create(
+#     name: "管理者２", 
+#     email: "sample10@g.com",
+#     password: "password",
+#     admin: true
+#   )
+# end
+
+# 1.times do |n|
+#   admin_user.tasks.create(
+#     title: "タスク #{n + 1}",
+#     content: "任意",
+#     deadline_on: Date.new(2022, 8, n + 1),
+#     priority: rand(0..2),
+#     status: rand(0..2)
+#   )
+# end
+
+
+  not_admin_user = User.create(
+  name: "平社員",
+  email: "sample88@g.com",
   password: "password",
-  admin: true
+  admin: false
 )
+
+50.times do |n|
+  not_admin_user.tasks.create(
+    title: "ToDo #{n + 1}",
+    content: "任意",
+    deadline_on: Date.new(2022, 12, n + 1),
+    priority: rand(0..2),
+    status: rand(0..2)
+  )
+end
+
+
 
 # 10.times do |i|
 #   n = i+1

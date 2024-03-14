@@ -19,6 +19,10 @@ ja:
         waiting: 未着手
         working: 着手中
         completed: 完了
+  admin:
+    users:
+      true: あり
+      false: なし
   tasks:
     index:
       title: タスク一覧ページ
@@ -47,6 +51,8 @@ ja:
     attributes:
       title: タイトル
       content: 内容
+      password: パスワード
+      password_confirmation: パスワード（確認）
     messages:
       blank: を入力してください
       invalid: が無効です
@@ -61,6 +67,8 @@ ja:
     back: 戻る
     update: 更新する
     create: 登録する
+    password: パスワード
+    password_confirmation: パスワード（確認）
     title: タイトル：
     content: 内容：
     created_at: 作成日時：
@@ -68,7 +76,7 @@ ja:
     priority: 優先度：
     status: ステータス：
     name: 名前：
-    mail: メールアドレス：
+    email: メールアドレス：
     delete_confirm: 本当に削除してもよろしいですか？
     message: ログインしてください
     admin: 管理者権限：

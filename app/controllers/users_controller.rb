@@ -15,12 +15,14 @@ def  create
   @user = User.new(user_params)
   respond_to do |format|
     if @user.save
-      session[:user_id] = @user.id
-      format.html { redirect_to tasks_path(@user.id), notice: "アカウントを登録しました" }
+      log_in(@user)
+      format.html { redirect_to tasks_path, notice: "アカウントを登録しました" }
       format.json { render :show, status: :created, location: @user }
     else
       format.html { render :new, status: :unprocessable_entity }
       format.json { render json: @user.errors, status: :unprocessable_entity }
+    end
+  end
 end
 
 def show
@@ -73,7 +75,11 @@ private
       redirect_to tasks_path
     end
   end
-end
+
+  def login_required
+    redirect_to new_session_path unless current_user
+    flash[:notice] = 'ログインしてください'
+  end
 end
 
 

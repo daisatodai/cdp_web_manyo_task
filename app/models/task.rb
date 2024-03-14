@@ -28,6 +28,6 @@ class Task < ApplicationRecord
   # end
   scope :search_title_status, -> (title, status){where('title LIKE ?',"%#{title}%").where(status: status)}
   scope :status_is, -> (status)  { where(status: status) if status.present? }
-  scope :title_like, -> (title) { where('title LIKE ?', "%#{title}%") if title.present? }
+  scope :title_like, -> (title) { where('title LIKE ?', '%' + title + '%') if title.present? }
   # status_isが存在する場合、status_isで検索する
 end

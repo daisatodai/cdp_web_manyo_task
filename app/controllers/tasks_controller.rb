@@ -4,21 +4,24 @@ class TasksController < ApplicationController
   # GET /tasks or /tasks.json
   def index
     @tasks = current_user.tasks.order(created_at: :desc)
-    @tasks = current_user.tasks.sort_due_date if params[:sort_deadline_on]
+    @tasks = current_user.tasks.sort_deadline_on if params[:sort_deadline_on]
     @tasks = current_user.tasks.sort_priority if params[:sort_priority]
-    if params[:task].present?
-      title = params[:task][:title]
-      status = params[:task][:status]
-      if title.present? && status.present?
-        @tasks = current_user.tasks.search_title_status(title, status)
+    if params[:search]
+      @tasks = current_user.tasks.order(created_at: :desc)
+      @tasks = @tasks.title_like(params[:search][:title]) if params[:search][:title].present?
+      @tasks = @tasks.status_is(params[:search][:status]) if params[:search][:status].present?
+      #title= params[:task][:title]
+      #status = params[:task][:status]
+      #if title.present? && status.present?
+       # @tasks = current_user.tasks.search_title_status(title, status)
         # @tasks = Task.search_title_status(title, status)
-      elsif title.present? 
-        @tasks = current_user.tasks.title_like(title)
+      #elsif title.present?
+        #@tasks = current_user.tasks.title_like(title)
         # @tasks = Task.search_title(title)
-      elsif status.present?
-        @tasks = current_user.tasks.status_is(status)
+      #elsif status.present?
+        #@tasks = current_user.tasks.status_is(status)
         # @tasks = Task.search_status(status)
-      end
+      #end
     end
     @tasks = @tasks.sort_by_created_at.page(params[:page]).per(10)
   end
@@ -30,9 +33,9 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     if params[:back]
-      @task = Task.new(task_params)
+      @task = current_user.tasks.build(task_params)
     else
-      @task = Task.new
+      @task = current_user.tasks.build
     end
   end
 
@@ -42,7 +45,7 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = current_user.tasks.new(task_params)
+    @task = current_user.tasks.build(task_params)
     respond_to do |format|
       if params[:back]
         render :new
@@ -53,6 +56,7 @@ class TasksController < ApplicationController
         else
           format.html { render :new, status: :unprocessable_entity }
           format.json { render json: @task.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -89,5 +93,4 @@ class TasksController < ApplicationController
     def task_params
       params.require(:task).permit(:title, :content, :deadline_on, :priority, :status)
     end
-  end
 end

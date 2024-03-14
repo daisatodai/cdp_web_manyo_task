@@ -44,7 +44,6 @@ RSpec.configure do |config|
   # inherited by the metadata hash of host groups and examples, rather than
   # triggering implicit auto-inclusion in groups with matching metadata.
   config.shared_context_metadata_behavior = :apply_to_host_groups
-
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin
@@ -92,48 +91,4 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-RSpec.describe 'ユーザ管理機能', type: :system do
-  describe '登録機能' do
-    context 'ユーザを登録した場合' do
-      it 'タスク一覧画面に遷移する' do
-      end
-    end
-    context 'ログインせずにタスク一覧画面に遷移した場合' do
-      it 'ログイン画面に遷移し、「ログインしてください」というメッセージが表示される' do
-      end
-    end
-  end
-
-  describe 'ログイン機能' do
-    context '登録済みのユーザでログインした場合' do
-      it 'タスク一覧画面に遷移し、「ログインしました」というメッセージが表示される' do
-      end
-      it '自分の詳細画面にアクセスできる' do
-      end
-      it '他人の詳細画面にアクセスすると、タスク一覧画面に遷移する' do
-      end
-      it 'ログアウトするとログイン画面に遷移し、「ログアウトしました」というメッセージが表示される' do
-      end
-    end
-  end
-
-  describe '管理者機能' do
-    context '管理者がログインした場合' do
-      it 'ユーザ一覧画面にアクセスできる' do
-      end
-      it '管理者を登録できる' do
-      end
-      it 'ユーザ詳細画面にアクセスできる' do
-      end
-      it 'ユーザ編集画面から、自分以外のユーザを編集できる' do
-      end
-      it 'ユーザを削除できる' do
-      end
-    end
-    context '一般ユーザがユーザ一覧画面にアクセスした場合' do
-      it 'タスク一覧画面に遷移し、「管理者以外アクセスできません」というエラーメッセージが表示される' do
-      end
-    end
-  end
-end
 end

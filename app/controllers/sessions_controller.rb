@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       flash.now[:notice] = 'ログインしました'
       session[:user_id] = user.id
-      redirect_to tasks_path(user.id)
+      redirect_to tasks_path
     else
       flash.now[:danger] = 'メールアドレスまたはパスワードに誤りがあります'
       render :new
@@ -21,4 +21,12 @@ class SessionsController < ApplicationController
     flash[:notice] = 'ログアウトしました'
     redirect_to new_session_path
   end
+
+private
+
+  def login_required
+    redirect_to new_session_path unless current_user
+    flash[:notice] = 'ログインしてください'
+  end
 end
+
