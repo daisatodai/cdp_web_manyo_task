@@ -1,5 +1,16 @@
 <h1>ユーザ一覧ページ</h1>
 
+<% if @user && @user.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
 <table>
   <thead>
     <tr>

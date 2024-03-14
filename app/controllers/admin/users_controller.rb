@@ -36,11 +36,12 @@ class Admin::UsersController < ApplicationController
   end
   
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_users_path, notice: 'ユーザを削除しました' }
-      format.json { head :no_content }
-    end
+     if @user.destroy
+      redirect_to admin_users_path, notice: 'ユーザを削除しました'
+     else
+      @users = User.all.includes(:tasks).order(created_at: :desc)
+      render :index
+     end
   end
 
   private

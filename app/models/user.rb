@@ -10,11 +10,19 @@ class User < ApplicationRecord
 
   private
     def admin_cannot_update
-      throw :abort if User.exists?(admin: true) && self.saved_change_to_admin == [true, false]
+      admin_count = User.where(admin: true).count
+      if admin_count == 1 && self.changes[:admin] == [true, false]
+        self.errors.add(:base, "管理者が0人になるため権限を変更できません" )
+        throw :abort
+      end
     end
 
     def admin_cannot_delete
-      throw :abort if User.exists?(admin: true) && self.admin == true
+      admin_count = User.where(admin: true).count
+      if admin_count == 1 && self.admin
+        self.errors.add(:base, "管理者が0人になるため削除できません" )
+        throw :abort
+      end
     end
 
 
