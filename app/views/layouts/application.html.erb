@@ -21,8 +21,8 @@
       <li><%= link_to "アカウント設定", user_path(current_user.id), id: "account-setting" %></li>
       <li><%= link_to "ログアウト", new_session_path, method: :delete, id: "sign-out" %></li>
       <% if admin? %>
-        <li><%= link_to "ユーザー一覧", admin_users_path, id: "users-index" %></li>
-        <li><%= link_to "ユーザーを登録する", new_admin_user_path, id: "add-user" %></li>
+        <li><%= link_to "ユーザ一覧", admin_users_path, id: "users-index" %></li>
+        <li><%= link_to "ユーザを登録する", new_admin_user_path, id: "add-user" %></li>
       <% end %>
     <% else %>
       <li><%= link_to "アカウント登録", new_user_path, id: "sign-up" %></li>

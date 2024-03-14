@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      flash.now[:notice] = 'ログインしました'
+      # flash.now[:notice] = 'ログインしました'
       session[:user_id] = user.id
-      redirect_to tasks_path
+      redirect_to tasks_path, notice: 'ログインしました。'
     else
       flash.now[:danger] = 'メールアドレスまたはパスワードに誤りがあります'
       render :new

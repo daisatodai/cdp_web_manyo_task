@@ -9,6 +9,11 @@ ja:
         deadline_on: 終了期限
         priority: 優先度
         status: ステータス
+      user:
+        name: 名前
+        email: メールアドレス
+        password_confirmation: パスワード（確認）
+        password: パスワード
   enums:
     task:
       priority:

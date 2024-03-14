@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
   namespace :admin do
-    resources :users, only: [:index, :new, :create, :show,  :edit, :destroy]
+    resources :users
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # get 'tasks/search/sort_deadline_on', to: 'tasks#search', as: 'sort_deadline_on'
