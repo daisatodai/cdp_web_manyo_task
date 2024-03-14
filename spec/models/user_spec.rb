@@ -25,22 +25,22 @@ RSpec.describe 'ユーザモデル機能', type: :model do
 
     context 'ユーザのメールアドレスがすでに使用されていた場合' do
       it 'バリデーションに失敗する' do
-        existing_user = FactoryBot.create(:user, email: 'existing@example.com')
-        user_with_duplicate_email = FactoryBot.build(:user, email: 'existing@example.com')
+        existing_user = FactoryBot.create(:first_user, email: 'existing@example.com')
+        user_with_duplicate_email = FactoryBot.build(:second_user, email: 'existing@example.com')
         expect(user_with_duplicate_email).not_to be_valid
       end
     end
 
     context 'ユーザのパスワードが6文字未満の場合' do
       it 'バリデーションに失敗する' do
-        user = User.create(name: 'taro', email: 'example@a.com', password: '', password_confirmation: '' )
+        user = User.create(name: 'taro', email: 'example@a.com', password: 'p', password_confirmation: 'p' )
         expect(user).not_to be_valid
       end
     end
 
     context 'ユーザの名前に値があり、メールアドレスが使われていない値で、かつパスワードが6文字以上の場合' do
       it 'バリデーションに成功する' do
-        user = FactoryBot.build(:user, name: 'John', email: 'new@example.com', password: 'password123')
+        user = FactoryBot.build(:first_user, name: 'John', email: 'new@example.com', password: 'password123', password_confirmation: 'password123')
         expect(user).to be_valid
       end
     end
