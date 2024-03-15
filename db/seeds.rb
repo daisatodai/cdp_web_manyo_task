@@ -29,7 +29,7 @@
 
 
   not_admin_user = User.create(
-  name: "",
+  name: "taro",
   email: "sample88@g.com",
   password: "password",
   admin: false
