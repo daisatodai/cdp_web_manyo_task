@@ -1,0 +1,31 @@
+<%= form_with(model: user, local: true) do |f| %>
+
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label "名前" %><br>
+  <%= f.text_field :name %><br>
+
+  <%= f.label "メールアドレス" %><br>
+  <%= f.email_field :email %><br>
+
+  <%= f.label "パスワード" %><br>
+  <%= f.password_field :password %><br>
+
+  <%= f.label "パスワード（確認）" %><br>
+  <%= f.password_field :password_confirmation %>
+
+  <br>
+  <br>
+  <div class="actions">
+    <%= f.submit id: button_id %>
+  </div>
+  
+<% end %>

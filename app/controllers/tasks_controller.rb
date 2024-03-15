@@ -1,16 +1,27 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
-
+  before_action :ensure_correct_user, only: %i[ show edit update destroy ]
   # GET /tasks or /tasks.json
   def index
-    @search_params = task_search_params
-    @tasks = Task.search(@search_params)
-    if params[:sort_deadline_on].present? && params[:sort_priority].present?
-      @tasks = @tasks.sort_deadline_on.sort_priority
-    elsif params[:sort_deadline_on]
-      @tasks = @tasks.sort_deadline_on
-    elsif params[:sort_priority]
-      @tasks = @tasks.sort_priority
+    @tasks = current_user.tasks.order(created_at: :desc)
+    @tasks = current_user.tasks.sort_deadline_on if params[:sort_deadline_on]
+    @tasks = current_user.tasks.sort_priority if params[:sort_priority]
+    if params[:search]
+      @tasks = current_user.tasks.order(created_at: :desc)
+      @tasks = @tasks.title_like(params[:search][:title]) if params[:search][:title].present?
+      @tasks = @tasks.status_is(params[:search][:status]) if params[:search][:status].present?
+      #title= params[:task][:title]
+      #status = params[:task][:status]
+      #if title.present? && status.present?
+       # @tasks = current_user.tasks.search_title_status(title, status)
+        # @tasks = Task.search_title_status(title, status)
+      #elsif title.present?
+        #@tasks = current_user.tasks.title_like(title)
+        # @tasks = Task.search_title(title)
+      #elsif status.present?
+        #@tasks = current_user.tasks.status_is(status)
+        # @tasks = Task.search_status(status)
+      #end
     end
     @tasks = @tasks.sort_by_created_at.page(params[:page]).per(10)
   end
@@ -21,7 +32,11 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    if params[:back]
+      @task = current_user.tasks.build(task_params)
+    else
+      @task = current_user.tasks.build
+    end
   end
 
   # GET /tasks/1/edit
@@ -30,15 +45,18 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
-
+    @task = current_user.tasks.build(task_params)
     respond_to do |format|
-      if @task.save
-        format.html { redirect_to tasks_path, notice: t('flash.created') }
-        format.json { render :show, status: :created, location: @task }
+      if params[:back]
+        render :new
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        if @task.save
+          format.html { redirect_to tasks_path(@task), notice: t('flash.created') }
+          format.json { render :show, status: :created, location: @task }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @task.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -60,7 +78,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: t('flash.destroyed') }
+      format.html { redirect_to tasks_path, notice: t('flash.destroyed') }
       format.json { head :no_content }
     end
   end
@@ -76,7 +94,10 @@ class TasksController < ApplicationController
       params.require(:task).permit(:title, :content, :deadline_on, :priority, :status)
     end
 
-    def task_search_params
-      params.fetch(:search, {}).permit(:status, :title)
+    def ensure_correct_user
+      if @task.user.id != current_user.id
+        flash[:notice] = "アクセス権限がありません"
+        redirect_to tasks_path
+      end
     end
 end

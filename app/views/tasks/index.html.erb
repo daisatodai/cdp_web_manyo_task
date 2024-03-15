@@ -10,12 +10,12 @@
   <div class="search-form">
       <div class="field">
         <%= f.label(:title, t('views.title')) %>
-        <%= f.text_field :title, value: @search_params[:title] %>
+        <%= f.text_field :title  %>
       </div>
   </div>
 
   <div class="actions">
-    <%= f.submit (t('views.search')), id:"search_task" %>
+    <%= f.submit (t('views.search')), click_seach: true, id:"search_task" %>
   </div>
 <% end %>
 

@@ -9,6 +9,11 @@ ja:
         deadline_on: 終了期限
         priority: 優先度
         status: ステータス
+      user:
+        name: 名前
+        email: メールアドレス
+        password_confirmation: パスワード（確認）
+        password: パスワード
   enums:
     task:
       priority:
@@ -19,6 +24,10 @@ ja:
         waiting: 未着手
         working: 着手中
         completed: 完了
+  admin:
+    users:
+      true: あり
+      false: なし
   tasks:
     index:
       title: タスク一覧ページ
@@ -38,12 +47,20 @@ ja:
     status: ステータス
     New Task: タスクを登録する
     search: 検索
+    name: 名前
+    email: メールアドレス
+    admin: 管理者権限
+    task_count: タスク数
   errors:
     format: "%{attribute}%{message}"
     attributes:
       title: タイトル
       content: 内容
+      password: パスワード
+      password_confirmation: パスワード（確認）
     messages:
+      taken: はすでに使用されています
+      too_short: は6文字以上で入力してください
       blank: を入力してください
       invalid: が無効です
       confirmation: とパスワードの入力が一致しません
@@ -57,14 +74,19 @@ ja:
     back: 戻る
     update: 更新する
     create: 登録する
+    password: パスワード
+    password_confirmation: パスワード（確認）
     title: タイトル：
     content: 内容：
     created_at: 作成日時：
     deadline: 終了期限：
     priority: 優先度：
     status: ステータス：
+    name: 名前：
+    email: メールアドレス：
     delete_confirm: 本当に削除してもよろしいですか？
     message: ログインしてください
+    admin: 管理者権限：
   helpers:
     submit:
       create: 登録する

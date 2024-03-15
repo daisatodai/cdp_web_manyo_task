@@ -1,0 +1,44 @@
+<h1>ユーザ詳細ページ</h1>
+
+<p>
+  <strong><%= t('common.name') %></strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong><%= t('common.email') %></strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong><%= t('common.admin') %></strong>
+  <%= @user.admin ? "あり" : "なし" %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('views.title') %></th>
+      <th><%= t('views.content') %></th>
+      <th><%= t('views.created_at') %></th>
+      <th><%= link_to t('views.deadline'), sort_deadline_on: true %></th>
+      <th><%= link_to t('views.priority'), sort_priority: true %></th>
+      <th><%= t('views.status') %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.content %></td>
+        <td><%= task.created_at %></td>
+        <td><%= task.deadline_on  %></td>
+        <td><%= task.priority_i18n %></td>
+        <td><%= task.status_i18n %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('common.back') , admin_users_path, id: "back" %>
