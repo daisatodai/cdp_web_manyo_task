@@ -80,14 +80,14 @@ RSpec.describe 'ユーザ管理機能', type: :system do
         expect(page).to have_text('ユーザを登録する')
         click_link('ユーザを登録する')
         expect(page).to have_text('ユーザ登録ページ')
-        fill_in('user_name', with: 'jiro' )
-        fill_in('user_email', with: 'jiro@g.com')
+        fill_in('user_name', with: 'taro' )
+        fill_in('user_email', with: 'samplesample@g.com')
         fill_in('user_password', with: 'password')
         fill_in('user_password_confirmation', with: 'password')
-        check('管理者権限')
+        check('user[admin]')
         click_button('登録する')
         expect(page).to have_text('ユーザを登録しました')
-        expect(page).to have_text('jiro@g.com')
+        expect(page).to have_text('samplesample@g.com')
       end
 
        it 'ユーザ詳細画面にアクセスできる' do
@@ -116,8 +116,10 @@ RSpec.describe 'ユーザ管理機能', type: :system do
       it 'ユーザを削除できる' do
         click_link('ユーザ一覧')
         expect(page).to have_text('saburo@g.com')
-        delete_user_id =User.find_by(name: 'jiro').id
-        click_on('削除')
+        delete_user_id = User.find_by(name: 'jiro').id
+        accept_alert do
+          click_link('削除',href: "/admin/users/#{delete_user_id}")
+        end
         expect(page).to have_text('ユーザ一覧ページ')
         expect(page).to have_text('ユーザを削除しました')
         expect(page).not_to have_text('jiro@g.com')
