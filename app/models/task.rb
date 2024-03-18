@@ -5,6 +5,8 @@ class Task < ApplicationRecord
   validates :priority, presence: true
   validates :status, presence: true
   belongs_to :user, foreign_key: 'user_id'
+  has_many :task_labels, dependent: :destroy, foreign_key: 'task_id'
+  has_many :labels, through: :task_labels, source: :label
   enum priority: {
     low: 0,
     middle: 1,

@@ -34,6 +34,14 @@
     <%= form.select :status, Task.statuses_i18n.keys.map {|k| [Task.statuses_i18n[k], k]}, {prompt: ""} %>
   </div>
 
+  <div>
+    <%= form.label :label, "ラベル" %><br>
+    <% Label.all.each do |label| %>
+      <%= form.check_box :label_ids, { multiple: true, include_hidden: false }, label[:id] %>
+      <%= label.name %>
+    <% end %>
+  </div>
+
   <br>
   <div class="actions">
     <%= form.submit id: button_id %>

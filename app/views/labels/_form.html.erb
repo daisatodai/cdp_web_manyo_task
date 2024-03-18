@@ -1,0 +1,21 @@
+<%= form_with(model: label, local:true) do |form| %>
+  <% if label.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% label.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <br>
+  <div class="actions">
+    <%= form.submit id: button_id %>
+  </div>
+<% end %>

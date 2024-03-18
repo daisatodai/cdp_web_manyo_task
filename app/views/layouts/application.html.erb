@@ -18,6 +18,8 @@
     <% if logged_in? %>
       <li><%= link_to t('common.index'), tasks_path, id: "tasks-index" %></li>
       <li><%= link_to t('common.task'), new_task_path, id: "new-task" %></li>
+      <li><%= link_to "ラベル一覧", labels_path(current_user.id), id: "labels-index" %></li>
+      <li><%= link_to "ラベルを登録する", new_label_path(current_user.id), id: "new-label" %></li>
       <li><%= link_to "アカウント設定", user_path(current_user.id), id: "account-setting" %></li>
       <li><%= link_to "ログアウト", new_session_path, method: :delete, id: "sign-out" %></li>
       <% if admin? %>

@@ -45,6 +45,7 @@ ja:
     deadline: 終了期限
     priority: 優先度
     status: ステータス
+    label: ラベル
     New Task: タスクを登録する
     search: 検索
     name: 名前
@@ -87,11 +88,17 @@ ja:
     delete_confirm: 本当に削除してもよろしいですか？
     message: ログインしてください
     admin: 管理者権限：
+    label: ラベル：
   helpers:
     submit:
       create: 登録する
       update: 更新する
   flash:
-    created : タスクを登録しました
-    updated : タスクを更新しました
-    destroyed : タスクを削除しました
+    tasks:
+      created : タスクを登録しました
+      updated : タスクを更新しました
+      destroyed : タスクを削除しました
+    labels:
+      created : ラベルを登録しました
+      updated : ラベルを更新しました
+      destroyed : ラベルを削除しました
