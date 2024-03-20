@@ -11,6 +11,7 @@ class TasksController < ApplicationController
       @tasks = current_user.tasks.order(created_at: :desc)
       @tasks = @tasks.title_like(params[:search][:title]) if params[:search][:title].present?
       @tasks = @tasks.status_is(params[:search][:status]) if params[:search][:status].present?
+      @tasks = @tasks.label_search(params[:search][:label]) if params[:search][:label].present?
     end
     @tasks = @tasks.sort_by_created_at.page(params[:page]).per(10)
   end
@@ -43,6 +44,7 @@ class TasksController < ApplicationController
           format.html { redirect_to tasks_path(@task), notice: t('flash.tasks.created') }
           format.json { render :show, status: :created, location: @task }
         else
+          binding.irb
           format.html { render :new, status: :unprocessable_entity }
           format.json { render json: @task.errors, status: :unprocessable_entity }
         end

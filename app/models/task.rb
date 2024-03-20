@@ -5,7 +5,7 @@ class Task < ApplicationRecord
   validates :priority, presence: true
   validates :status, presence: true
   belongs_to :user, foreign_key: 'user_id'
-  has_many :task_labels, dependent: :destroy, foreign_key: 'task_id'
+  has_many :task_labels, dependent: :destroy
   has_many :labels, through: :task_labels, source: :label
   enum priority: {
     low: 0,
@@ -31,5 +31,6 @@ class Task < ApplicationRecord
   scope :search_title_status, -> (title, status){where('title LIKE ?',"%#{title}%").where(status: status)}
   scope :status_is, -> (status)  { where(status: status) if status.present? }
   scope :title_like, -> (title) { where('title LIKE ?', '%' + title + '%') if title.present? }
+  scope :label_search, -> (label_id) { joins(:labels).where(labels: {id: label_id}) if label_id.present? }
   # status_isが存在する場合、status_isで検索する
 end

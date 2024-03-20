@@ -5,6 +5,7 @@ class User < ApplicationRecord
   before_validation { email.downcase! }
   has_secure_password
   has_many :tasks, dependent: :destroy
+  has_many :labels, dependent: :destroy
   before_update :admin_cannot_update
   before_destroy :admin_cannot_delete
 

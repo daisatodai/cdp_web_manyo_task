@@ -9,12 +9,12 @@
   </thead>
 
   <tbody>
-    <% @labels.each do |Label| %>
+    <% @labels.each do |label| %>
       <tr>
         <td><%= label.name %></td>
-        <td><%= label.task_count %></td>
+        <td><%= label.tasks.size %></td>
         <td><%= link_to t('common.edit'), edit_label_path(label), class: "edit-label" %></td>
-        <td><%= link_to t('common.destroy'), labels_path(label), method: :delete, data: { confirm: t('common.delete_confirm') }, class: "destroy-label" %></td>
+        <td><%= link_to t('common.destroy'), label, method: :delete, data: { confirm: t('common.delete_confirm') }, class: "destroy-label" %></td>
       </tr>
     <% end %>
   </tbody>

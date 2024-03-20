@@ -6,7 +6,7 @@ FactoryBot.define do
     title { 'first_task_title' }
     content { 'slum dunk'}
     deadline_on { '002022-2-18'}
-    created_at {'2022-02-16'}
+    created_at {'002022-02-16'}
     priority { 'middle' }
     status { 'waiting' }
   end
@@ -16,7 +16,7 @@ FactoryBot.define do
     title { 'second_task_title' }
     content {'haikyuu' }
     deadline_on {'002022-2-17'}
-    created_at {'2022-02-16'}
+    created_at {'002022-02-15'}
     priority { 'high' }
     status { 'working' }
   end
@@ -25,7 +25,7 @@ FactoryBot.define do
     title { 'third_task_title' }
     content { 'one piece' }
     deadline_on {'002022-2-16'}
-    created_at {'2022-02-16'}
+    created_at {'002022-02-14'}
     priority { 'low' }
     status { 'completed' }
   end

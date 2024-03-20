@@ -2,23 +2,21 @@
 
 <%= form_with(scope: :search, url: tasks_path, method: :get, local: true) do |f| %>
   <div class="field">
-    <%= f.label(:status, t('views.status')) %>
+    <%= f.label(:status, t('views.status')) %><br>
     <%= f.select :status, options_for_select( Task.statuses.keys.map {|k|
   [t("enums.task.status.#{k}"),k]}), include_blank: true %>
   </div>
 
   <div class="search-form">
       <div class="field">
-        <%= f.label(:title, t('views.title')) %>
+        <%= f.label(:title, t('views.title')) %><br>
         <%= f.text_field :title  %>
       </div>
   </div>
 
-  <div class="search-form">  #label検索する
-    <%= f.label(:label, t('views.label')) %>
-    <%= form_with url: tasks_path, method: :get, local: true do |form| %>
-      <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: true }) %>
-    <% end %>
+  <div>
+    <%= f.label(:label, t('views.label')) %><br>
+    <%= f.select :label, current_user.labels.map { |label| [label.name, label.id] }, {include_blank: true} %>
   </div>
 
   <div class="actions">
@@ -47,9 +45,9 @@
         <td><%= task.deadline_on  %></td>
         <td><%= task.priority_i18n %></td>
         <td><%= task.status_i18n %></td>
-        <td><%= link_to t('common.show'), task_path(task), class: "show-task" %></td>
-        <td><%= link_to t('common.edit'), edit_task_path(task), class: "edit-task" %></td>
-        <td><%= link_to t('common.destroy'), task_path(task), method: :delete, data: { confirm: t('common.delete_confirm') }, class: "destroy-task" %></td>
+        <td class="btn btn-outline-primary" role="button"><%= link_to t('common.show'), task_path(task), class: "show-task" %></td>
+        <td class="btn btn-outline-primary" role="button"><%= link_to t('common.edit'), edit_task_path(task), class: "edit-task" %></td>
+        <td class="btn btn-outline-danger" role="button"><%= link_to t('common.destroy'), task_path(task), method: :delete, data: { confirm: t('common.delete_confirm') }, class: "destroy-task" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -57,6 +55,4 @@
 <footer>
 <%= paginate @tasks %>
 </footer>
-
-<br>
 

@@ -7,31 +7,38 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <nav>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="navbar-nav">
+          <div class="container-fluid, justify-content-end">
+              <% flash.each do |key, value| %>
+                <%= content_tag(:div, value, class: "#{key}") %>
+              <% end %>
 
-    <% if logged_in? %>
-      <li><%= link_to t('common.index'), tasks_path, id: "tasks-index" %></li>
-      <li><%= link_to t('common.task'), new_task_path, id: "new-task" %></li>
-      <li><%= link_to "ラベル一覧", labels_path(current_user.id), id: "labels-index" %></li>
-      <li><%= link_to "ラベルを登録する", new_label_path(current_user.id), id: "new-label" %></li>
-      <li><%= link_to "アカウント設定", user_path(current_user.id), id: "account-setting" %></li>
-      <li><%= link_to "ログアウト", new_session_path, method: :delete, id: "sign-out" %></li>
-      <% if admin? %>
-        <li><%= link_to "ユーザ一覧", admin_users_path, id: "users-index" %></li>
-        <li><%= link_to "ユーザを登録する", new_admin_user_path, id: "add-user" %></li>
-      <% end %>
-    <% else %>
-      <li><%= link_to "アカウント登録", new_user_path, id: "sign-up" %></li>
-      <li><%= link_to "ログイン", new_session_path, id: "sign-in" %></li>
-    <% end %>
+              <% if logged_in? %>
+                <li><%= link_to t('common.index'), tasks_path, id: "tasks-index" %></li>
+                <li><%= link_to t('common.task'), new_task_path, id: "new-task" %></li>
+                <li><%= link_to "ラベル一覧", labels_path, id: "labels-index" %></li>
+                <li><%= link_to "ラベルを登録する", new_label_path, id: "new-label" %></li>
+                <li><%= link_to "アカウント設定", user_path(current_user.id), id: "account-setting" %></li>
+                <li><%= link_to "ログアウト", new_session_path, method: :delete, id: "sign-out" %></li>
+                  <% if admin? %>
+                    <li><%= link_to "ユーザ一覧", admin_users_path, id: "users-index" %></li>
+                    <li><%= link_to "ユーザを登録する", new_admin_user_path, id: "add-user" %></li>
+                  <% end %>
+              <% else %>
+                <li><%= link_to "アカウント登録", new_user_path, id: "sign-up" %></li>
+                <li><%= link_to "ログイン", new_session_path, id: "sign-in" %></li>
+              <% end %>
 
-  <%= yield %>
-  </nav>
+      <div class='container'>
+      <%= yield %>
+      </div>
+    </div>
+    </div>
+    </nav>
   </body>
 </html>
