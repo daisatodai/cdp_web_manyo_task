@@ -226,8 +226,29 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
   end
   describe '検索機能' do
+    before do
+      visit new_session_path
+      fill_in('session_email', with: 'taro@g.com')
+      fill_in('session_password', with: 'password')
+      click_button('ログイン')
+      visit _path
+      fill_in('session_email', with: 'taro@g.com')
+      fill_in('session_password', with: 'password')
+      click_button('ログイン')
+    end
     context 'ラベルで検索をした場合' do
+      let!(:first_user) { FactoryBot.create(:first_user) }
+      let!(:second_user) { FactoryBot.create(:second_user) }
+      let!(:third_user) { FactoryBot.create(:third_user) }
       it "そのラベルの付いたタスクがすべて表示される" do
+        task_list = all('body tbody tr')
+        label = first_user.labels.build(name: 'ruby')
+        expect(page).to have_table
+        select('ruby', from: 'label_seach')
+        click_button('検索')
+        expect(page).to have_content('ruby')
+        expect(page).not_to have_content('css')
+        expect(page).not_to have_content('physon')
         # toとnot_toのマッチャを使って表示されるものとされないものの両方を確認する
       end
     end

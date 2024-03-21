@@ -1,4 +1,4 @@
-require 'rails_helper'
+# require 'rails_helper'
 FactoryBot.define do
   factory :ruby_label, class: Label do
     name { "ruby" }

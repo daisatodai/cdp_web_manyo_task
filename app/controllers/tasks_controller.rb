@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
   before_action :ensure_correct_user, only: %i[ show edit update destroy ]
-  # before_action :correct_label, only: [:edit, :update, :destroy]
+  before_action :correct_label_user, only: [:new, :create, :edit, :update]
   # GET /tasks or /tasks.json
   def index
     @tasks = current_user.tasks.order(created_at: :desc)
@@ -91,7 +91,7 @@ class TasksController < ApplicationController
       end
     end
 
-    # def correct_label
-    #   redirect_to labels_path unless current_user.id == @label.user_id
-    # end
+    def correct_label_user
+      @labels = current_user.labels
+    end
 end
