@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <h1>ユーザ一覧ページ</h1>
 
 <% if @user && @user.errors.any? %>
@@ -28,10 +29,12 @@
         <td><%= user.email %></td>
         <td><%= user.admin ? "あり" : "なし" %></td>
         <td><%= user.tasks.count %></td>
-        <td><%= link_to t('common.show'), admin_user_path(user.id), class: "show-user" %></td>
-        <td><%= link_to t('common.edit'), edit_admin_user_path(user.id), class: "edit-user" %></td>
-        <td><%= link_to t('common.destroy'), admin_user_path(user.id), method: :delete, data: { confirm: t('common.delete_confirm') }, class: "destroy-user" %></td>
+        <td><%= link_to t('common.show'), admin_user_path(user.id), class: "show-user btn btn-primary" %></td>
+        <td><%= link_to t('common.edit'), edit_admin_user_path(user.id), class: "edit-user btn btn-primary" %></td>
+        <td><%= link_to t('common.destroy'), admin_user_path(user.id), method: :delete, data: { confirm: t('common.delete_confirm') }, class: "destroy-user btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+</div>

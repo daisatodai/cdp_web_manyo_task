@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
   before_action :ensure_correct_user, only: %i[ show edit update destroy ]
+  # before_action :correct_label, only: [:edit, :update, :destroy]
   # GET /tasks or /tasks.json
   def index
     @tasks = current_user.tasks.order(created_at: :desc)
@@ -44,7 +45,6 @@ class TasksController < ApplicationController
           format.html { redirect_to tasks_path(@task), notice: t('flash.tasks.created') }
           format.json { render :show, status: :created, location: @task }
         else
-          binding.irb
           format.html { render :new, status: :unprocessable_entity }
           format.json { render json: @task.errors, status: :unprocessable_entity }
         end
@@ -54,14 +54,13 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to @task, notice: t('flash.tasks.updated') }
-        format.json { render :show, status: :ok, location: @task }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if params[:label_ids].nil?
+      @task.labels.clear
+    end
+    if @task.update(task_params)
+      redirect_to @task, notice: t('flash.tasks.updated')
+    else
+      render :edit
     end
   end
 
@@ -91,4 +90,8 @@ class TasksController < ApplicationController
         redirect_to tasks_path
       end
     end
+
+    # def correct_label
+    #   redirect_to labels_path unless current_user.id == @label.user_id
+    # end
 end

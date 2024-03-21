@@ -1,3 +1,4 @@
+<div class="container">
 <h1>アカウント詳細ページ</h1>
 
 <p>
@@ -10,4 +11,5 @@
   <%= @user.email %>
 </p>
 
-<%= link_to t('common.edit'), edit_user_path(@user), id: "edit-user" %>
+<%= link_to t('common.edit'), edit_user_path(@user), id: "edit-user", class: 'btn btn-primary' %>
+</div>

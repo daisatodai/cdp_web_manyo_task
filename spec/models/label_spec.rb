@@ -9,8 +9,9 @@ require 'rails_helper'
       end
 
       context 'ラベルの名前に値があった場合' do
+        let!(:first_user) { FactoryBot.create(:first_user) }
         it 'バリデーションに成功する' do
-          label = Label.create(name: 'label', user_id: 10 )
+          label = first_user.labels.build(name: 'ruby')
           expect(label).to be_valid
         end
       end

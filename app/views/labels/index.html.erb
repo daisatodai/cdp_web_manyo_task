@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <h1>ラベル一覧ページ</h1>
 
 <table>
@@ -13,9 +14,10 @@
       <tr>
         <td><%= label.name %></td>
         <td><%= label.tasks.size %></td>
-        <td><%= link_to t('common.edit'), edit_label_path(label), class: "edit-label" %></td>
-        <td><%= link_to t('common.destroy'), label, method: :delete, data: { confirm: t('common.delete_confirm') }, class: "destroy-label" %></td>
+        <td><%= link_to t('common.edit'), edit_label_path(label), class: "edit-label btn btn-primary" %></td>
+        <td><%= link_to t('common.destroy'), label, method: :delete, data: { confirm: t('common.delete_confirm') }, class: "destroy-label btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>

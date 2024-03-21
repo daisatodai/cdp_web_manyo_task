@@ -4,41 +4,43 @@
     <title>CdpWebManyoTask</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="navbar-nav">
-          <div class="container-fluid, justify-content-end">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="container-fluid justify-content-end">
+        <div id="navbarNav">
+          <ul class="navbar-nav">
               <% flash.each do |key, value| %>
                 <%= content_tag(:div, value, class: "#{key}") %>
               <% end %>
-
               <% if logged_in? %>
-                <li><%= link_to t('common.index'), tasks_path, id: "tasks-index" %></li>
-                <li><%= link_to t('common.task'), new_task_path, id: "new-task" %></li>
-                <li><%= link_to "ラベル一覧", labels_path, id: "labels-index" %></li>
-                <li><%= link_to "ラベルを登録する", new_label_path, id: "new-label" %></li>
-                <li><%= link_to "アカウント設定", user_path(current_user.id), id: "account-setting" %></li>
-                <li><%= link_to "ログアウト", new_session_path, method: :delete, id: "sign-out" %></li>
+                <li class="nav-item"><%= link_to t('common.index'), tasks_path, id: "tasks-index", class: 'nav-link' %></li>
+                <li class="nav-item"><%= link_to t('common.task'), new_task_path, id: "new-task", class: 'nav-link' %></li>
+                <li class="nav-item"><%= link_to "ラベル一覧", labels_path, id: "labels-index", class: 'nav-link' %></li>
+                <li class="nav-item"><%= link_to "ラベルを登録する", new_label_path, id: "new-label", class: 'nav-link' %></li>
+                <li class="nav-item"><%= link_to "アカウント設定", user_path(current_user.id), id: "account-setting", class: 'nav-link' %></li>
+                <li class="nav-item"><%= link_to "ログアウト", new_session_path, method: :delete, id: "sign-out", class: 'nav-link' %></li>
                   <% if admin? %>
-                    <li><%= link_to "ユーザ一覧", admin_users_path, id: "users-index" %></li>
-                    <li><%= link_to "ユーザを登録する", new_admin_user_path, id: "add-user" %></li>
+                    <li class="nav-item"><%= link_to "ユーザ一覧", admin_users_path, id: "users-index", class: 'nav-link' %></li>
+                    <li class="nav-item"><%= link_to "ユーザを登録する", new_admin_user_path, id: "add-user", class: 'nav-link' %></li>
                   <% end %>
               <% else %>
-                <li><%= link_to "アカウント登録", new_user_path, id: "sign-up" %></li>
-                <li><%= link_to "ログイン", new_session_path, id: "sign-in" %></li>
+                <li class="nav-item"><%= link_to "アカウント登録", new_user_path, id: "sign-up", class: 'nav-link' %></li>
+                <li class="nav-item"><%= link_to "ログイン", new_session_path, id: "sign-in", class: 'nav-link' %></li>
               <% end %>
-
-      <div class='container'>
-      <%= yield %>
-      </div>
-    </div>
-    </div>
+              <div class="container">
+              <%= yield %>
+            </div>        
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+      </ul>
     </nav>
   </body>
 </html>
+
+

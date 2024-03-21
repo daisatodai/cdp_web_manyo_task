@@ -3,6 +3,7 @@ class LabelsController < ApplicationController
   # before_action :set_user, only: %i[ index new create]
   skip_before_action :login_required, only: [:new, :create]
   before_action :set_label, only: %i[ show edit update destroy ]
+  before_action :correct_label, only: [:edit, :update, :destroy]
 
   def index
     @labels = current_user.labels
@@ -55,5 +56,10 @@ class LabelsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def label_params
       params.require(:label).permit(:name, task_ids: [])
+    end
+
+    def correct_label
+      set_label
+      redirect_to labels_path unless current_user.id == @label.user_id
     end
   end

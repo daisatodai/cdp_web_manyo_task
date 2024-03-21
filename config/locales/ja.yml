@@ -14,6 +14,8 @@ ja:
         email: メールアドレス
         password_confirmation: パスワード（確認）
         password: パスワード
+      label:
+        name: 名前
   enums:
     task:
       priority:
